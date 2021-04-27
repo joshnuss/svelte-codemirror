@@ -1,11 +1,12 @@
 <script>
   import { onMount } from 'svelte'
-  import CodeMirror from 'codemirror'
+  import CodeMirror from 'codemirror/src/codemirror.js'
 
   let classes = ''
 
   export let editor = null
   export let options = {}
+  export let value
   export { classes as class }
 
   let element
@@ -20,7 +21,17 @@
 
     if (editor) element.innerHTML = ''
 
-    editor = CodeMirror(element, options)
+    editor = CodeMirror(element, {...options, value})
+    editor.on('change', () => {
+      value = editor.getValue()
+    })
+  }
+
+  $: if (editor) {
+    const pos = editor.getCursor()
+
+    editor.setValue(value)
+    editor.setCursor(pos)
   }
 </script>
 
