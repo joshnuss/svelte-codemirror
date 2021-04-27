@@ -16,6 +16,7 @@
 
   function createEditor(options) {
     if (!window) return
+    if (!element) return
 
     if (editor) element.innerHTML = ''
 
