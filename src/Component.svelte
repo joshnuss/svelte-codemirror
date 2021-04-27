@@ -10,11 +10,13 @@
 
   let element
 
-  onMount(() => createEditor())
+  onMount(() => createEditor(options))
 
   $: if(element) { createEditor(options) }
 
   function createEditor(options) {
+    if (!window) return
+
     if (editor) element.innerHTML = ''
 
     editor = CodeMirror(element, options)
