@@ -33,6 +33,16 @@
     editor.setValue(value)
     editor.setCursor(pos)
   }
+
+  $: if (editor) {
+    Object.entries(options).forEach(([key, value]) => {
+      if (key == 'mode') {
+        editor.setMode(value)
+      } else {
+        editor.setOption(key, value)
+      }
+    })
+  }
 </script>
 
 <div bind:this={element} class={classes}/>
