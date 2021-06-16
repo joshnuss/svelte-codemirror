@@ -17,7 +17,7 @@ https://svelte.dev/repl/b2c657e8c49a42b6ba6aaf3dbd7d09d5
   let editor
 </script>
 
-<CodeMirror bind:editor options={{ lineNumbers: true, mode: "javascript", value: 'const x = 42' }}/>
+<CodeMirror bind:editor options={{ lineNumbers: true, mode: "javascript"}} value='const x = 42'/>
 ```
 
 ## License
