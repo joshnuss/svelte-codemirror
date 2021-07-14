@@ -81,12 +81,16 @@
 :global(.CodeMirror-lines) {
   padding: 4px 0; /* Vertical padding around content */
 }
-:global(.CodeMirror pre.CodeMirror-line,
-.CodeMirror pre.CodeMirror-line-like) {
+:global(.CodeMirror pre.CodeMirror-line){
   padding: 0 4px; /* Horizontal padding of content */
 }
-
-:global(.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler) {
+:global(.CodeMirror pre.CodeMirror-line-like) {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+:global(.CodeMirror-scrollbar-filler){
+  padding: 0 4px; /* Horizontal padding of content */
+}
+:global(.CodeMirror-gutter-filler) {
   background-color: var(--cm-background-color); /* The little square between H and V scrollbars */
 }
 
@@ -180,7 +184,8 @@
 :global(.cm-s-default .cm-quote) {color: #090;}
 :global(.cm-negative) {color: #d44;}
 :global(.cm-positive) {color: #292;}
-:global(.cm-header, .cm-strong) {font-weight: bold;}
+:global(.cm-header){font-weight: bold;}
+:global(.cm-strong){font-weight: bold;}
 :global(.cm-em) {font-style: italic;}
 :global(.cm-link) {text-decoration: underline;}
 :global(.cm-strikethrough) {text-decoration: line-through;}
@@ -189,12 +194,13 @@
 :global(.cm-s-default .cm-atom) {color: #219;}
 :global(.cm-s-default .cm-number) {color: #164;}
 :global(.cm-s-default .cm-def) {color: #00f;}
-:global(.cm-s-default .cm-variable,
-.cm-s-default .cm-punctuation,
-.cm-s-default .cm-property,
-.cm-s-default .cm-operator) {}
+:global(.cm-s-default .cm-variable) {}
+:global(.cm-s-default .cm-punctuation) {}
+:global(.cm-s-default .cm-property) {}
+:global(.cm-s-default .cm-operator) {}
 :global(.cm-s-default .cm-variable-2) {color: #05a;}
-:global(.cm-s-default .cm-variable-3, .cm-s-default .cm-type) {color: #085;}
+:global(.cm-s-default .cm-variable-3) {color: #05a;}
+:global(.cm-s-default .cm-type) {color: #085;}
 :global(.cm-s-default .cm-comment) {color: #a50;}
 :global(.cm-s-default .cm-string) {color: #a11;}
 :global(.cm-s-default .cm-string-2) {color: #f50;}
@@ -247,7 +253,22 @@
 /* The fake, visible scrollbars. Used to force redraw during scrolling
    before actual scrolling happens, thus preventing shaking and
    flickering artifacts. */
-:global(.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler) {
+:global(.CodeMirror-vscrollbar){
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+:global(.CodeMirror-hscrollbar){
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+:global(.CodeMirror-scrollbar-filler){
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+:global(.CodeMirror-gutter-filler) {
   position: absolute;
   z-index: 6;
   display: none;
@@ -321,8 +342,7 @@
   cursor: text;
   min-height: 1px; /* prevents collapsing before first draw */
 }
-:global(.CodeMirror pre.CodeMirror-line,
-.CodeMirror pre.CodeMirror-line-like) {
+:global(.CodeMirror pre.CodeMirror-line) {
   /* Reset some styles that the rest of the page might have set */
   -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
@@ -341,8 +361,32 @@
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
-:global(.CodeMirror-wrap pre.CodeMirror-line,
-.CodeMirror-wrap pre.CodeMirror-line-like) {
+
+:global(.CodeMirror pre.CodeMirror-line-like) {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+}
+:global(.CodeMirror-wrap pre.CodeMirror-line){
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+:global(.CodeMirror-wrap pre.CodeMirror-line-like) {
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: normal;
@@ -369,11 +413,23 @@
 }
 
 /* Force content-box sizing for the elements where we expect it */
-:global(.CodeMirror-scroll,
-  .CodeMirror-sizer,
-  .CodeMirror-gutter,
-  .CodeMirror-gutters,
-  .CodeMirror-linenumber) {
+:global(.CodeMirror-scroll){
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+:global(.CodeMirror-sizer){
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+:global(.CodeMirror-gutter){
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+:global(.CodeMirror-gutters){
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+:global(.CodeMirror-linenumber) {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
@@ -409,8 +465,12 @@
 :global(.CodeMirror-selected) { background: #d9d9d9; }
 :global(.CodeMirror-focused .CodeMirror-selected) { background: #d7d4f0; }
 :global(.CodeMirror-crosshair) { cursor: crosshair; }
-:global(.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection) { background: #d7d4f0; }
-:global(.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection) { background: #d7d4f0; }
+:global(.CodeMirror-line::selection){ background: #d7d4f0; }
+:global(.CodeMirror-line > span::selection){ background: #d7d4f0; }
+:global(.CodeMirror-line > span > span::selection) { background: #d7d4f0; }
+:global(.CodeMirror-line::-moz-selection) { background: #d7d4f0; }
+:global(.CodeMirror-line > span::-moz-selection) { background: #d7d4f0; }
+:global(.CodeMirror-line > span > span::-moz-selection) { background: #d7d4f0; }
 
 :global(.cm-searching) {
   background-color: #ffa;
