@@ -36,11 +36,7 @@
 
   $: if (editor) {
     Object.entries(options).forEach(([key, value]) => {
-      if (key == 'mode') {
-        editor.setMode(value)
-      } else {
-        editor.setOption(key, value)
-      }
+      editor.setOption(key, value)
     })
   }
 </script>
