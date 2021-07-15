@@ -26,5 +26,5 @@
   "peerDependencies": {
     "codemirror": "^5.61.0"
   },
-  "version": "0.2.5"
+  "version": "0.2.6"
 }
