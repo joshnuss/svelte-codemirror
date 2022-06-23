@@ -7,6 +7,9 @@ Provides an abstraction layer over CodeMirror that reduces the setup needed to m
 
 https://svelte.dev/repl/b2c657e8c49a42b6ba6aaf3dbd7d09d5
 
+## Install 
+npm i @joshnuss/svelte-codemirror
+
 ## Usage
 
 ```html
