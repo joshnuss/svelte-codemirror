@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import CodeMirror from 'codemirror/src/codemirror.js'
+  import CodeMirror from 'codemirror/lib/codemirror.js'
 
   let classes = ''
 
